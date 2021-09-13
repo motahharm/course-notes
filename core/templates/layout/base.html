@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html dir="rtl">
+
+<head>
+  <!--  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Style Sheet -->
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/font/font.css">
+  {% block style %}
+  {% endblock style %}
+  <!--  -->
+  <title>
+    {% block title %}
+    {% endblock title %}
+  </title>
+  <!--  -->
+</head>
+
+<body>
+  <header>
+    <!-- Header -->
+  </header>
+  <main>
+    <div class="container my-5">
+      {% if message %}
+      <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <h3>{{message}}</h3>
+      </div>
+      {% endif %}
+    </div>
+    <!--  -->
+    {% block content %}
+    {% endblock content %}
+  </main>
+  <footer>
+    <!-- Footer -->
+  </footer>
+  <!-- Java Script -->
+  <script src="/static/js/bootstrap.bundle.min.js"></script>
+  {% block script %}
+  {% endblock script %}
+</body>
+
+</html>

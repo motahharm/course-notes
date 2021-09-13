@@ -1,15 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doc</title>
-</head>
-<body>
-  <h1>hello</h1>
-  <h2>hello</h2>
-  <h3>hello</h3>
-  <h4>hello</h4>
-  <h5>hello</h5>
-</body>
-</html>
+{% extends 'layout/base.html' %}
+
+{% block title %}
+hello
+{% endblock title %}
+
+{% block content %}
+
+<div class="container my-5">
+{% for course in courses %}
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title">{{ course.title }}</h1>
+    <p class="card-text">{{ course.description|linebreaks }}</p>
+    <a href="#" class="btn btn-primary btn-lg">کاوش</a>
+  </div>
+</div>
+{% endfor %}
+</div>
+
+{% endblock content %}

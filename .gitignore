@@ -6,6 +6,10 @@ __pycache__
 db.sqlite3
 media
 
+# Scss Files # BootStrap
+core/static/css/scss/
+core/static/css/style.scss
+
 # Backup files # 
 *.bak 
 
