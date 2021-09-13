@@ -17,6 +17,21 @@ Django Initilize:
     python3 manage.py migrate
     python3 manage.py createsuperuser #For Creat Super User
 
+Use Whitenoise When Debug Is False:
+
+    pip install whitenoise
+
+- In Settings.py Uncommand Two Line For Whitenoise
+- In Settings.py Find:
+
+        debug = True
+
+- Replace With:
+
+        debug = False
+
+You Are Success 😎
+
 Run:
 ----
 Run On Localhost:
