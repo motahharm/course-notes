@@ -24,12 +24,12 @@
   </header>
   <main>
     <div class="container my-5">
-      {% if message %}
-      <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      {% for message in messages %}
+      <div class="alert alert-secondary alert-dismissible fade show" role="alert">
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         <h3>{{message}}</h3>
       </div>
-      {% endif %}
+      {% endfor %}
     </div>
     <!--  -->
     {% block content %}

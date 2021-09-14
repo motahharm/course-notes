@@ -1,0 +1,17 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+ورود | مایادرس
+{% endblock title %}
+
+{% block content %}
+
+<div class="container my-5">
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ login_form }}
+    <button class="btn btn-primary btn-lg">ورود</button>
+  </form>
+</div>
+
+{% endblock content %}
