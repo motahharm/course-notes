@@ -13,7 +13,7 @@ context['messages'].append('این نسخه بتا می‌باشد. | motahharmo
 
 @login_required(login_url="/login/")
 def index_view(request):
-  coures_models = models.course_model.objects.all()
+  coures_models = models.course_model.objects.filter(author=request.user)
   page = Paginator(coures_models, 5)
   page_num = request.GET.get('page', 1)
   courses = page.page(page_num)

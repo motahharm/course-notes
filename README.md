@@ -1,6 +1,11 @@
 # Course Notes
 A app for managing lessons with Django
 
+Some Ideas for this app:
+----
+- [ ] Share Lessons
+- [ ] Exam Generator
+
 Installation:
 ----
 Clone:
