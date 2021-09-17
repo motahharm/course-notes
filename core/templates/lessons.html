@@ -1,0 +1,27 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+سوالات | مایادرس
+{% endblock title %}
+
+{% block content %}
+
+<div class="container my-5 text-center">
+  <a href="{% url 'new_lesson' %}?course_id={{ course.id }}" class="btn btn-primary btn-lg">ایجاد سوال</a>
+</div>
+
+<div class="container my-5">
+  {% for lesson in lessons %}
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-text">{{ lesson.key|linebreaks }}</h3>
+      <p class="card-text">{{ lesson.value|linebreaks }}</p>
+        <a href="#" class="btn btn-primary btn-sm">
+          تغییر
+        </a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}

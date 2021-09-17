@@ -7,21 +7,17 @@
 {% block content %}
 
 <div class="container my-5">
-  {% for course in courses %}
-  <div class="card">
-    <div class="card-body">
-      <h1 class="card-title">
-        <lord-icon src="https://cdn.lordicon.com/tvyxmjyo.json" target=".card-body" trigger="hover" colors="primary:#121331,secondary:#08a88a"></lord-icon>
-        {{ course.title }}
-      </h1>
-      <p class="card-text">{{ course.description|linebreaks }}</p>
-        <a href="#" class="btn btn-primary btn-lg">
-          <lord-icon src="https://cdn.lordicon.com/wxnxiano.json" target="a" trigger="morph" colors="primary:#ffffff,secondary:#e4e4e4"></lord-icon>
-          کاوش
-        </a>
+  <div class="row">
+    <div class="card" style="width: 18rem;">
+      <lord-icon src="https://cdn.lordicon.com/wxnxiano.json" target=".card"
+      trigger="morph" colors="primary:#121331,secondary:#08a88a" style="width: 18rem; height: 18rem;" class="card-img-top"></lord-icon>
+      <div class="card-body">
+        <h5 class="card-title">مدیریت دروس</h5>
+        <p class="card-text">مدیریت آسان دروس توسط خودتان</p>
+        <a href="{% url 'courses' %}" class="btn btn-primary">دورس</a>
+      </div>
     </div>
   </div>
-  {% endfor %}
 </div>
 
 {% endblock content %}

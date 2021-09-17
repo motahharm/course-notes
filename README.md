@@ -1,3 +1,4 @@
+![](img/icon.png)
 # Course Notes
 A app for managing lessons with Django
 

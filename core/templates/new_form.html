@@ -1,0 +1,18 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+ورود | مایادرس
+{% endblock title %}
+
+{% block content %}
+
+<div class="container my-5">
+  <form action="" method="POST" autocomplete="off">
+    <input type="hidden" autocomplete="false">
+    {% csrf_token %}
+    {{ form }}
+    <button class="btn btn-primary btn-lg">ساخت درس جدید</button>
+  </form>
+</div>
+
+{% endblock content %}
