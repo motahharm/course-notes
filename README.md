@@ -1,5 +1,5 @@
-![](img/icon.png)
 # Course Notes
+![](img/icon.png)<br>
 A app for managing lessons with Django
 
 Some Ideas for this app:
