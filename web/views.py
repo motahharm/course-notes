@@ -11,16 +11,16 @@ def context_load():
   # context['messages'].append('این نسخه بتا می‌باشد. | motahharmokfi@gmail.com')
   return context
 
-context = context_load()
-
 # For Add New Message:
 # context['messages'].append('Message')
 
 def index_view(request):
+  context = context_load()
   return render(request, 'index.html', context)
 
 @login_required(login_url="/login/")
 def courses_view(request):
+  context = context_load()
   coures_models = models.course_model.objects.filter(author=request.user)
   page = Paginator(coures_models, 5)
   page_num = request.GET.get('page', 1)
@@ -30,6 +30,7 @@ def courses_view(request):
 
 @login_required(login_url="/login/")
 def lessons_view(request):
+  context = context_load()
   if int(request.GET.get('course_id')) is not None:
     course_model = models.course_model.objects.filter(author=request.user).get(id=request.GET.get('course_id'))
     lesson_model = models.lesson_model.objects.filter(course=course_model)
@@ -40,6 +41,7 @@ def lessons_view(request):
 
 @login_required(login_url="/login/")
 def new_course_view(request):
+  context = context_load()
   form = forms.create_course_form(request.POST or None)
 
   if request.method == "POST":
@@ -59,6 +61,7 @@ def new_course_view(request):
 
 @login_required(login_url="/login/")
 def new_lesson_view(request):
+  context = context_load()
   course = models.course_model.objects.filter(author=request.user).get(id=request.GET.get('course_id'))
 
   form = forms.create_lesson_form(request.POST or None)
@@ -76,10 +79,12 @@ def new_lesson_view(request):
 
   context['form'] = forms.create_lesson_form
   context['cta'] = 'ایجاد سوال'
+  context['course'] = course
   return render(request, 'new_form.html', context)
 
 
 def login_view(request):
+  context = context_load()
   form = forms.LoginForm(request.POST or None)
 
   if request.method == "POST":
@@ -96,5 +101,6 @@ def login_view(request):
   return render(request, 'login.html', context)
 
 def logout_view(request):
+  context = context_load()
   logout(request)
   return redirect('/')
