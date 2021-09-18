@@ -5,9 +5,10 @@ from . import models
 from django.contrib.auth.decorators import login_required
 from . import forms
 
-def context_load():
+def context_load(request):
   context = {}
   context['messages'] = []
+  print(request.user)
   # context['messages'].append('این نسخه بتا می‌باشد. | motahharmokfi@gmail.com')
   return context
 
@@ -15,33 +16,40 @@ def context_load():
 # context['messages'].append('Message')
 
 def index_view(request):
-  context = context_load()
+  context = context_load(request)
   return render(request, 'index.html', context)
 
 @login_required(login_url="/login/")
 def courses_view(request):
-  context = context_load()
+  context = context_load(request)
   coures_models = models.course_model.objects.filter(author=request.user)
-  page = Paginator(coures_models, 5)
+  pages = Paginator(coures_models, 5)
   page_num = request.GET.get('page', 1)
-  courses = page.page(page_num)
+  courses = pages.page(page_num)
   context['courses'] = courses
+  context['pages'] = pages
   return render(request, 'courses.html', context)
 
 @login_required(login_url="/login/")
 def lessons_view(request):
-  context = context_load()
+  context = context_load(request)
   if int(request.GET.get('course_id')) is not None:
-    course_model = models.course_model.objects.filter(author=request.user).get(id=request.GET.get('course_id'))
-    lesson_model = models.lesson_model.objects.filter(course=course_model)
+    courses = models.course_model.objects.filter(author=request.user).get(id=request.GET.get('course_id'))
+    lessons = models.lesson_model.objects.filter(course=courses)
 
-  context['lessons'] = lesson_model
-  context['course'] = course_model
+  pages = Paginator(lessons, 5)
+  page_num = request.GET.get('page', 1)
+  lessons = pages.page(page_num)
+
+  context['pages'] = pages
+  context['lessons'] = lessons
+  context['course'] = courses
+  context['course_id'] = request.GET.get('course_id')
   return render(request, 'lessons.html', context)
 
 @login_required(login_url="/login/")
 def new_course_view(request):
-  context = context_load()
+  context = context_load(request)
   form = forms.create_course_form(request.POST or None)
 
   if request.method == "POST":
@@ -61,7 +69,7 @@ def new_course_view(request):
 
 @login_required(login_url="/login/")
 def new_lesson_view(request):
-  context = context_load()
+  context = context_load(request)
   course = models.course_model.objects.filter(author=request.user).get(id=request.GET.get('course_id'))
 
   form = forms.create_lesson_form(request.POST or None)
@@ -84,7 +92,7 @@ def new_lesson_view(request):
 
 
 def login_view(request):
-  context = context_load()
+  context = context_load(request)
   form = forms.LoginForm(request.POST or None)
 
   if request.method == "POST":
@@ -101,6 +109,6 @@ def login_view(request):
   return render(request, 'login.html', context)
 
 def logout_view(request):
-  context = context_load()
+  context = context_load(request)
   logout(request)
   return redirect('/')

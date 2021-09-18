@@ -15,7 +15,7 @@
   <div class="card">
     <div class="card-body">
       <h1 class="card-title">
-        <lord-icon src="https://cdn.lordicon.com/tyounuzx.json" target=".card-body" trigger="hover" colors="primary:#121331,secondary:#08a88a"></lord-icon>
+        <!-- <lord-icon src="https://cdn.lordicon.com/tyounuzx.json" target=".card-body" trigger="hover" colors="primary:#121331,secondary:#08a88a"></lord-icon> -->
         {{ course.title }}
       </h1>
       <p class="card-text">{{ course.description|linebreaks }}</p>
@@ -26,6 +26,21 @@
     </div>
   </div>
   {% endfor %}
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      {% if courses.has_next == True %}
+      <li class="page-item"><a class="page-link" href="?page={{courses.next_page_number}}">بعدی</a></li>
+      {% endif %}
+      {% for page in pages.page_range %}
+      <li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+      {% endfor %}
+      {% if courses.has_previous == True %}
+      <li class="page-item"><a class="page-link" href="?page={{courses.previous_page_number}}">قبلی</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+
 </div>
 
 {% endblock content %}

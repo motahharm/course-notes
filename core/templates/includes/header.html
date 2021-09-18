@@ -7,7 +7,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="{% url 'index' %}">خانه</a>
         </li>
@@ -17,17 +17,28 @@
         <li class="nav-item">
           <a class="nav-link disabled">جست و جو</a>
         </li>
+      </ul>
+      <div class="navbar-nav me-auto">
         {% if request.path == '/new_lesson/' %}
-        <li class="nav-item me-left">
+        <li class="nav-item m-2">
           <a class="btn btn-outline-light btn-lg" href="{% url 'lessons' %}?course_id={{course.id}}">بازگشت</a>
         </li>
         {% endif %}
         {% if request.path == '/lessons/' %}
-        <li class="nav-item me-left">
+        <li class="nav-item m-2">
           <a class="btn btn-outline-light btn-lg" href="{% url 'courses' %}?course_id={{course.id}}">بازگشت</a>
         </li>
         {% endif %}
-      </ul>
+        {% if request.user.is_authenticated %}
+        <li class="m-2">
+          <a class="btn btn-outline-danger btn-sm" href="{% url 'logout' %}">خروج از حساب کاربری</a>
+        </li>
+        {% else %}
+        <li class="m-2">
+          <a class="btn btn-outline-success btn-lg" href="{% url 'login' %}">ورود به حساب کاربری</a>
+        </li>
+        {% endif %}
+      </div>
     </div>
   </div>
 </nav>

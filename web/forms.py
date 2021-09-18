@@ -43,14 +43,14 @@ class create_lesson_form(forms.Form):
         
 
 class LoginForm(forms.Form):
-    username = forms.CharField(
+    username = forms.CharField(label='نام کاربری:',
         widget=forms.TextInput(
             attrs={
                 "placeholder" : "نام کاربری",
                 "class": "form-control my-3"
             }
         ))
-    password = forms.CharField(
+    password = forms.CharField(label='رمز عبور',
         widget=forms.PasswordInput(
             attrs={
                 "placeholder" : "رمز عبور",

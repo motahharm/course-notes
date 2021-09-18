@@ -11,7 +11,13 @@
     <input type="hidden" autocomplete="false">
     {% csrf_token %}
     {{ form }}
-    <button class="btn btn-primary btn-lg">ساخت درس جدید</button>
+    <button class="btn btn-primary btn-lg">
+      {% if cta %}
+      {{ cta }}
+      {% else %}
+      ایجاد
+      {% endif %}
+    </button>
   </form>
 </div>
 
