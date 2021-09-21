@@ -17,11 +17,19 @@ Go To Dir:
 
     cd course-notes
 
+Create Virtualenv:
+
+- Create Virtualenv (Optional)
+
+Install Requirements:
+
+    pip install -r requirements.txt
+
 Django Initilize:
 
-    python3 manage.py makemigrations
-    python3 manage.py migrate
-    python3 manage.py createsuperuser #For Creat Super User
+    python manage.py makemigrations
+    python manage.py migrate
+    python manage.py createsuperuser #For Creat Super User
 
 Use Whitenoise When Debug Is False:
 
